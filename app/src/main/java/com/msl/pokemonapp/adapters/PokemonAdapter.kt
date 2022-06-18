@@ -33,7 +33,7 @@ class PokemonAdapter(private val listener: OnItemClickListener) : RecyclerView.A
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.cardText.text = pokemonList[position].name
 
-        // Load image
+        // Load image from sprite GitHub
         var urlSplit = pokemonList[position].url.split("/")
         var _id = urlSplit[urlSplit.size - 2]
         var imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_id}.png"
@@ -41,12 +41,12 @@ class PokemonAdapter(private val listener: OnItemClickListener) : RecyclerView.A
             .asBitmap()
             .load(imgUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
-            .into(object: CustomTarget<Bitmap>(300,300){
+            .into(object: CustomTarget<Bitmap>(350,350){
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     // Set background colour of card to most common colour within bitmap image
                     holder.cardImage.setImageBitmap(resource)
                     var color = createPaletteSync(resource).vibrantSwatch
-                    holder.card.setBackgroundColor(color?.rgb?: ContextCompat.getColor(holder.card.context, R.color.light_grey))
+                    holder.card.setCardBackgroundColor(color?.rgb?: ContextCompat.getColor(holder.card.context, R.color.light_grey))
                 }
                 override fun onLoadCleared(placeholder: Drawable?) {
                 }

@@ -38,8 +38,8 @@ class PokemonViewModel : ViewModel(){
         })
     }
 
-    fun getSinglePokemon(id: Int){
-        val call = retro.getSinglePokemon(id)
+    fun getSinglePokemon(name: String){
+        val call = retro.getSinglePokemon(name)
         call.enqueue(object : Callback<Pokemon> {
             override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
                 response.body()?.let{ pokemon ->

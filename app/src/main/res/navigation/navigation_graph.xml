@@ -9,5 +9,14 @@
         android:id="@+id/allPokemonFragment"
         android:name="com.msl.pokemonapp.ui.AllPokemonFragment"
         android:label="fragment_all_pokemon"
-        tools:layout="@layout/fragment_all_pokemon" />
+        tools:layout="@layout/fragment_all_pokemon" >
+        <action
+            android:id="@+id/action_allPokemonFragment_to_singlePokemonFragment"
+            app:destination="@id/singlePokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singlePokemonFragment"
+        android:name="com.msl.pokemonapp.ui.SinglePokemonFragment"
+        android:label="fragment_single_pokemon"
+        tools:layout="@layout/fragment_single_pokemon" />
 </navigation>

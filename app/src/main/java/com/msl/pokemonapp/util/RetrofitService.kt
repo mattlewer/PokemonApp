@@ -9,9 +9,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("pokemon/{id}")
+    @GET("pokemon/{name}")
     @Headers("Accept-type: application/json")
-    fun getSinglePokemon(@Path("id")id:Int): Call<Pokemon>
+    fun getSinglePokemon(@Path("name")name:String): Call<Pokemon>
 
     @GET("pokemon")
     fun getAllPokemon(@Query("limit") limit: Int, @Query("offset")offset:Int): Call<ApiResponse>
