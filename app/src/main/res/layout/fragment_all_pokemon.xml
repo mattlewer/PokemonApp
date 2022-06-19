@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AllPokemonFragment">
+    tools:context=".ui.AllPokemonFragment"
+    android:background="@color/almost_black">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layoutAnimation="@anim/recycler_animation"
         android:id="@+id/allPokemonRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"

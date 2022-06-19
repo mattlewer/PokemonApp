@@ -9,5 +9,15 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="light_grey">#D1D1D1</color>
+    <color name="almost_black">#101010</color>
     <color name="pokedex_red">#E84D4D</color>
+
+<!--    FOR POKEMON TYPES   -->
+    <color name="teal">#2ED8B0</color>
+    <color name="red">#F47B6F</color>
+    <color name="blue">#5CA8ED</color>
+    <color name="yellow">#FACC52</color>
+    <color name="purple">#80578F</color>
+    <color name="brown">#AF756E</color>
+
 </resources>

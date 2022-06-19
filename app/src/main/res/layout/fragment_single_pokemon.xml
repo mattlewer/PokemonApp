@@ -4,35 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SinglePokemonFragment">
+    tools:context=".ui.SinglePokemonFragment"
+    android:background="@color/almost_black"
+    >
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+    <ImageView
+        android:paddingTop="40dp"
+        android:adjustViewBounds="true"
+        android:id="@+id/singlePokemonImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
 
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/singlePokemonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/singlePokemonImage"/>
 
-            <ImageView
-                android:id="@+id/singlePokemonImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+    <com.github.mikephil.charting.charts.RadarChart
+        android:id="@+id/singlePokemonChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeRecyclerView" />
 
-            <TextView
-                android:id="@+id/singlePokemonName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" />
-        </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/singlePokemonName" />
 
-    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

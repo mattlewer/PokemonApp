@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,6 +56,7 @@ class AllPokemonFragment : Fragment(), PokemonAdapter.OnItemClickListener  {
         pokemonViewModel.allPokemon().observe(viewLifecycleOwner, Observer {
             pokemon = it
             adapter.setData(it)
+            recyclerView.scheduleLayoutAnimation()
         })
     }
 
@@ -63,7 +65,7 @@ class AllPokemonFragment : Fragment(), PokemonAdapter.OnItemClickListener  {
         // If card clicked
         val bundle = Bundle()
         bundle.putString("pokemon", pokemon.name)
-        navController!!.navigate(R.id.singlePokemonFragment, bundle)
+        navController!!.navigate(R.id.action_allPokemonFragment_to_singlePokemonFragment, bundle)
     }
 
     // Reduce pokemon down to those with the text in their name - Send to adapter

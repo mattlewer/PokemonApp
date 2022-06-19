@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        println("GETTING POKEMON")
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
         viewModel.getAllPokemon()
     }

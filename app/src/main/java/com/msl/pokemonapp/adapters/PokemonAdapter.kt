@@ -32,16 +32,16 @@ class PokemonAdapter(private val listener: OnItemClickListener) : RecyclerView.A
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.cardText.text = pokemonList[position].name
-
         // Load image from sprite GitHub
         var urlSplit = pokemonList[position].url.split("/")
         var _id = urlSplit[urlSplit.size - 2]
+        holder.cardId.text = "#" + _id.padStart(3, '0')
         var imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_id}.png"
         Glide.with(holder.card.context)
             .asBitmap()
             .load(imgUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
-            .into(object: CustomTarget<Bitmap>(350,350){
+            .into(object: CustomTarget<Bitmap>(300,300){
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     // Set background colour of card to most common colour within bitmap image
                     holder.cardImage.setImageBitmap(resource)
@@ -61,12 +61,13 @@ class PokemonAdapter(private val listener: OnItemClickListener) : RecyclerView.A
         var card = itemView.findViewById<CardView>(R.id.pokemonListCard)
         var cardImage = itemView.findViewById<ImageView>(R.id.pokemonListImage)
         var cardText = itemView.findViewById<TextView>(R.id.pokemonListName)
+        var cardId = itemView.findViewById<TextView>(R.id.pokemonListId)
 
         init{
             card.setOnClickListener(this)
         }
 
-        override fun onClick(v: View, ) {
+        override fun onClick(v: View?) {
             val position = adapterPosition
             if(position != RecyclerView.NO_POSITION){
                 listener.onItemClick(v, pokemonList[position])

@@ -10,7 +10,8 @@ data class Pokemon(
     val weight: Int,
     val height: Int,
     val sprites: Sprites,
-    val stats: List<Stats>
+    val stats: List<Stats>,
+    val types: List<Types>
 ): Parcelable
 
 @Parcelize
@@ -25,8 +26,21 @@ data class Stats(
     var effort: Int,
     var stat: Stat,
 ): Parcelable
+
 @Parcelize
 data class Stat(
     var name: String,
     var url : String
+): Parcelable
+
+@Parcelize
+data class Types(
+    var slot: Int,
+    var type: Type
+): Parcelable
+
+@Parcelize
+data class Type(
+    var name: String,
+    var url: String
 ): Parcelable

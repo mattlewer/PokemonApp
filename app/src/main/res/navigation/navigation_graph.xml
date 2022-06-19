@@ -12,11 +12,23 @@
         tools:layout="@layout/fragment_all_pokemon" >
         <action
             android:id="@+id/action_allPokemonFragment_to_singlePokemonFragment"
-            app:destination="@id/singlePokemonFragment" />
+            app:destination="@id/singlePokemonFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/singlePokemonFragment"
         android:name="com.msl.pokemonapp.ui.SinglePokemonFragment"
         android:label="fragment_single_pokemon"
-        tools:layout="@layout/fragment_single_pokemon" />
+        tools:layout="@layout/fragment_single_pokemon" >
+        <action
+            android:id="@+id/action_singlePokemonFragment_to_allPokemonFragment"
+            app:destination="@id/allPokemonFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 </navigation>
