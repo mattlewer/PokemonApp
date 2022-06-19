@@ -9,12 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.palette.graphics.Palette
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -23,12 +19,12 @@ import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.msl.pokemonapp.R
-import com.msl.pokemonapp.adapters.PokemonAdapter
 import com.msl.pokemonapp.adapters.TypeAdapter
 import com.msl.pokemonapp.databinding.FragmentSinglePokemonBinding
 import com.msl.pokemonapp.model.Pokemon
@@ -36,9 +32,6 @@ import com.msl.pokemonapp.viewmodel.PokemonViewModel
 
 
 class SinglePokemonFragment : Fragment() {
-
-    lateinit var singlePokemonImage : ImageView
-    lateinit var singlePokemonName: TextView
 
     private var _binding: FragmentSinglePokemonBinding? = null
     private val binding get() = _binding!!
@@ -54,16 +47,15 @@ class SinglePokemonFragment : Fragment() {
         pokemonViewModel.getSinglePokemon(pokemonName)
         pokemonViewModel.singlePokemon().observe(viewLifecycleOwner,{
             pokemon = it
-            println(pokemon)
             preparePage()
             initRecyclerView()
-
         })
         // Inflate the layout for this fragment
         return binding.root
     }
 
 
+    // Load pokemon image from Sprite URL
     private fun preparePage(){
         Glide.with(binding.singlePokemonImage.context)
                 .asBitmap()
@@ -99,7 +91,7 @@ class SinglePokemonFragment : Fragment() {
         adapter.setData(types)
     }
 
-
+    // Create chart to show stats
     private fun prepareRadar(rgb: Int?) {
         var chart = binding.singlePokemonChart
 
@@ -128,6 +120,7 @@ class SinglePokemonFragment : Fragment() {
         var radarDataSet = RadarDataSet(radarValues, "Base Stats")
 
         // Radar RadarDataSet options
+        radarDataSet.valueFormatter = DefaultAxisValueFormatter(0)
         radarDataSet.setLineWidth(2f)
         radarDataSet.setColor(rgb!!)
         radarDataSet.valueTextColor = Color.WHITE
@@ -148,6 +141,7 @@ class SinglePokemonFragment : Fragment() {
         yAxis.textColor = Color.WHITE
         yAxis.setDrawLabels(false)
         yAxis.setAxisMinimum(0f)
+
 
         // Add data to chart
         chart.data = radarData
